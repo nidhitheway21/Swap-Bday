@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 25th Birthday Swapnil!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-navy: #020617;
+            --electric-blue: #3b82f6;
+            --neon-cyan: #22d3ee;
+            --soft-blue: #93c5fd;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--deep-navy);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- BACKGROUND ANIMATION --- */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+        }
+
+        /* --- HERO SECTION --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .bday-number {
+            font-size: 10rem;
+            font-weight: 900;
+            background: linear-gradient(to bottom, var(--neon-cyan), var(--electric-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--soft-blue);
+        }
+
+        .countdown {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            border-radius: 50px;
+            border: 1px solid var(--electric-blue);
+            font-size: 1.5rem;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+        }
+
+        /* --- PHOTO SECTION --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 80px 0 40px;
+            color: var(--neon-cyan);
+        }
+
+        .collage {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--glass);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .card:hover {
+            transform: scale(1.02) translateY(-10px);
+            border-color: var(--neon-cyan);
+            z-index: 10;
+        }
+
+        .card img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- GIFT SECTION --- */
+        .gift-area {
+            background: var(--glass);
+            margin: 100px 20px;
+            padding: 60px 20px;
+            border-radius: 30px;
+            text-align: center;
+            border: 2px dashed var(--electric-blue);
+        }
+
+        .gift-btn {
+            background: linear-gradient(45deg, var(--electric-blue), var(--neon-cyan));
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .gift-btn:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--neon-cyan); }
+
+        .gift-display {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            opacity: 0;
+            transition: 1s ease;
+        }
+
+        .gift-item {
+            font-size: 4rem;
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* --- VIDEO SECTION --- */
+        .video-box {
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            border: 4px solid var(--glass);
+        }
+
+        video { width: 100%; display: block; }
+
+        footer { padding: 60px; text-align: center; opacity: 0.5; }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <header>
+        <div class="bday-number">25</div>
+        <h1>Happy Birthday Swapnil 🎂, You are the best!❤️</h1>
+        <div class="countdown" id="timer">T-Minus...</div>
+    </header>
+
+    <section id="memories">
+        <h2 class="section-title">You truely deserve all the happiness in the world!</h2>
+        <h2 class="section-title">Hope these photos make you smile :)</h2>
+        <div class="collage">
+            <div class="card"><img src="photo1.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo2.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo3.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo4.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo5.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo6.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo7.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo8.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo9.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo10.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo11.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo12.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo13.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo14.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo15.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo16.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo17.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo18.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo19.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo20.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo21.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo22.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo23.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo24.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo25.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo26.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo27.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo28.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo29.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo30.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo31.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo32.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo33.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo34.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo35.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo36.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo37.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo38.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo39.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo40.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo41.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo42.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo43.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo44.jpeg" alt="Memory"></div>
+            <div class="card"><img src="photo45.jpeg" alt="Memory"></div>
+
+
+
+        </div>
+    </section>
+
+    <section class="gift-area">
+        <h2 class="section-title">A Special Surprise</h2>
+        <p style="margin-bottom: 30px; font-size: 1.2rem;">You didn't think I'd forget the gifts, did you?</p>
+        <button class="gift-btn" onclick="revealGifts()">HERE IS A GIFT FOR YOU!</button>
+        
+        <div class="gift-display" id="giftBox">
+            <div class="gift-item" title="Flowers">💐</div>
+            <div class="gift-item" title="Chocolates" style="animation-delay: 0.2s;">🍫</div>
+            <div class="gift-item" title="Bike" style="animation-delay: 0.4s;">🏍️</div>
+            <div class="gift-item" title="Party" style="animation-delay: 0.6s;">🥳</div>
+        </div>
+    </section>
+
+    <section id="video">
+        <h2 class="section-title">Here is your Cake 🎂🥳</h2>
+        <div class="video-box">
+            <video controls>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+    <footer>
+        <p>Happy 25th! Built with love for the best friend ever.</p>
+    </footer>
+
+    <script>
+        // --- FLOATING PARTICLES LOGIC ---
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = Math.random() > 0.5 ? '#3b82f6' : '#22d3ee';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        for (let i = 0; i < 100; i++) particles.push(new Particle());
+        animate();
+
+        // --- COUNTDOWN LOGIC ---
+        const bday = new Date("April 21, 2026 00:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = bday - now;
+            if (diff < 0) {
+                document.getElementById('timer').innerText = "IT'S PARTY TIME! 🎉";
+            } else {
+                const d = Math.floor(diff / (1000*60*60*24));
+                const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+                const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+                const s = Math.floor((diff % (1000*60)) / 1000);
+                document.getElementById('timer').innerText = `${d}d ${h}h ${m}m ${s}s`;
+            }
+        }, 1000);
+
+        // --- GIFT REVEAL LOGIC ---
+        function revealGifts() {
+            const box = document.getElementById('giftBox');
+            box.style.opacity = '1';
+            const btn = document.querySelector('.gift-btn');
+            btn.innerText = "ENJOY YOUR 25th!";
+            
+            // Add some confetti effect (using emoji)
+            for(let i=0; i<20; i++) {
+                createEmoji();
+            }
+        }
+
+        function createEmoji() {
+            const emojis = ['🎈', '✨', '🎂', '🎊'];
+            const e = document.createElement('div');
+            e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            e.style.position = 'fixed';
+            e.style.left = Math.random() * 100 + 'vw';
+            e.style.top = '100vh';
+            e.style.fontSize = '2rem';
+            e.style.zIndex = '100';
+            e.style.transition = 'transform 3s linear, opacity 3s';
+            document.body.appendChild(e);
+            
+            setTimeout(() => {
+                e.style.transform = `translateY(-110vh) rotate(${Math.random()*360}deg)`;
+                e.style.opacity = '0';
+            }, 100);
+            
+            setTimeout(() => e.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
